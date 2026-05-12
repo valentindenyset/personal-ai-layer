@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "personal-ai-layer"
+version = "0.1.0"
+description = "Personal AI memory layer: vector + graph store over all your apps"
+requires-python = ">=3.11"
+dependencies = [
+    # Core
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "python-dotenv>=1.0",
+    "PyYAML>=6.0",
+    "rich>=13.0",          # CLI output
+    "typer>=0.12",         # CLI framework
+
+    # Embeddings & NLP
+    "sentence-transformers>=3.0",
+    "spacy>=3.7",          # Entity extraction (NER)
+    "tiktoken>=0.7",       # Token counting
+
+    # Vector store
+    "qdrant-client>=1.9",
+
+    # Graph store
+    "neo4j>=5.20",
+
+    # Ingestion sources
+    "google-auth>=2.29",
+    "google-auth-oauthlib>=1.2",
+    "google-api-python-client>=2.129",  # Gmail + Calendar
+    "msgraph-sdk>=1.4",                  # Outlook + MS Calendar
+    "vobject>=0.9",                      # iCal / vCard parsing
+
+    # LLM & Agent
+    "anthropic>=0.30",
+    "mcp>=1.0",            # Model Context Protocol server
+
+    # Sync scheduler
+    "apscheduler>=3.10",
+
+    # Utilities
+    "httpx>=0.27",
+    "tenacity>=8.3",       # Retry logic
+    "python-dateutil>=2.9",
+    "Pillow>=10.3",        # Photo metadata
+    "exifread>=3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+pai = "scripts.query_cli:app"
+pai-ingest = "scripts.ingest_gdpr:app"
+pai-setup = "scripts.setup_stores:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true

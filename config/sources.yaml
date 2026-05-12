@@ -1,0 +1,48 @@
+# Enable/disable each data source independently
+sources:
+  google_calendar:
+    enabled: true
+    lookback_days: 365
+
+  google_mail:
+    enabled: true
+    max_emails: 5000
+    labels: ["INBOX", "SENT"]
+
+  microsoft_calendar:
+    enabled: false
+    lookback_days: 365
+
+  microsoft_mail:
+    enabled: false
+    max_emails: 5000
+
+  apple_health:
+    enabled: true
+    # Place your Health export XML at data/apple_health_export/export.xml
+    export_path: data/apple_health_export/export.xml
+
+  apple_photos:
+    enabled: true
+    # Metadata only (no image content ingested for privacy)
+    metadata_only: true
+
+  macos_imessage:
+    enabled: true
+    # Requires macOS and full-disk access for Terminal
+    db_path: ~/Library/Messages/chat.db
+    lookback_days: 730
+
+  macos_notes:
+    enabled: true
+    # Exported via AppleScript — run scripts/export_notes.applescript first
+    export_dir: data/notes_export
+
+  gdpr_whatsapp:
+    enabled: true
+    # Place unzipped WhatsApp export at data/gdpr_exports/whatsapp/
+    export_dir: data/gdpr_exports/whatsapp
+
+  gdpr_instagram:
+    enabled: false
+    export_dir: data/gdpr_exports/instagram
