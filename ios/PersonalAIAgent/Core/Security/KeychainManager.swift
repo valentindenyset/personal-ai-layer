@@ -22,7 +22,11 @@ final class KeychainManager {
     }
 
     static func setAPIKey(_ key: String) throws {
-        let data = key.data(using: .utf8)!
+        guard let data = key.data(using: .utf8) else {
+            throw NSError(domain: "KeychainManager", code: -1, userInfo: [
+                NSLocalizedDescriptionKey: "Failed to encode API key"
+            ])
+        }
 
         // Try to delete existing first
         let deleteQuery: [String: Any] = [

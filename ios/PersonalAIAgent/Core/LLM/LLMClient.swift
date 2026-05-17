@@ -35,10 +35,10 @@ final class LLMClient {
                     request.httpMethod = "POST"
                     request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
-                    request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
+                    request.setValue("2023-01-01", forHTTPHeaderField: "anthropic-version")
 
                     let body: [String: Any] = [
-                        "model": "claude-haiku-4-5",
+                        "model": "claude-3-5-haiku-20241022",
                         "max_tokens": 2048,
                         "system": systemPrompt,
                         "messages": messages.map { ["role": $0.role, "content": $0.content] },
