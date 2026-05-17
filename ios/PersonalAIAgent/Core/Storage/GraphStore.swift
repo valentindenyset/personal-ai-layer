@@ -56,6 +56,17 @@ final class GraphStore {
         sqlite3_close(db)
     }
 
+    // MARK: - Statistics
+
+    var entityCount: Int {
+        var stmt: OpaquePointer?
+        defer { sqlite3_finalize(stmt) }
+
+        sqlite3_prepare_v2(db, "SELECT COUNT(*) FROM entities", -1, &stmt, nil)
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return 0 }
+        return Int(sqlite3_column_int(stmt, 0))
+    }
+
     // MARK: - Entity Operations
 
     @discardableResult

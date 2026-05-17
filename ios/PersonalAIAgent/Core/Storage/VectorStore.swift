@@ -29,6 +29,17 @@ final class VectorStore {
         sqlite3_close(db)
     }
 
+    // MARK: - Query Operations
+
+    var chunkCount: Int {
+        var stmt: OpaquePointer?
+        defer { sqlite3_finalize(stmt) }
+
+        sqlite3_prepare_v2(db, "SELECT COUNT(*) FROM chunks", -1, &stmt, nil)
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return 0 }
+        return Int(sqlite3_column_int(stmt, 0))
+    }
+
     // MARK: - Chunk Operations
 
     func insert(text: String, embedding: [Float]?, source: String, dateTs: Double) {
