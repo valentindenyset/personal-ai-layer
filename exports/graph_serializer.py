@@ -1,7 +1,10 @@
 """Serialize Neo4j graph to JSON for iOS import."""
 from __future__ import annotations
 import json
+import os
 from typing import Any
+
+from stores.graph_store import GraphStore
 
 
 def serialize_entities(graph_store) -> list[dict[str, Any]]:
@@ -14,15 +17,13 @@ def serialize_relations(graph_store) -> list[dict[str, Any]]:
     return []  # Will implement in next task
 
 
-def export_graph_json(graph_store, output_dir: str) -> tuple[str, str]:
+def export_graph_json(graph_store: GraphStore, output_dir: str) -> tuple[str, str]:
     """
     Export graph to entities.json and relations.json.
 
     Returns:
         Tuple of (entities_path, relations_path)
     """
-    import os
-
     entities = serialize_entities(graph_store)
     relations = serialize_relations(graph_store)
 
