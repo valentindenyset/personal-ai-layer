@@ -35,11 +35,10 @@ def export(
     # Print stats
     if verbose:
         import sqlite3
-        conn = sqlite3.connect(result["database"])
-        cursor = conn.cursor()
-        cursor.execute("SELECT COUNT(*) FROM chunks")
-        chunk_count = cursor.fetchone()[0]
-        conn.close()
+        with sqlite3.connect(result["database"]) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM chunks")
+            chunk_count = cursor.fetchone()[0]
 
         import json
         with open(result["entities"]) as f:
