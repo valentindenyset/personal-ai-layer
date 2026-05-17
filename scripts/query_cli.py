@@ -13,14 +13,14 @@ from context.assembler import ContextAssembler
 from retrieval import HybridRetrievalEngine
 from stores.graph_store import GraphStore
 from stores.vector_store import VectorStore
-from scripts.export_cli import app as export_app
+from scripts.export_cli import export
 
 app = typer.Typer()
 console = Console()
 logging.basicConfig(level=logging.WARNING)
 
 # Add export subcommand
-app.add_typer(export_app, name="export-ios")
+app.command(name="export-ios")(export)
 
 
 @app.command()
