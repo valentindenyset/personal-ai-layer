@@ -8,9 +8,11 @@
 
 ## Executive Summary
 
-Rebuild of the Personal AI Agent iOS application with a hybrid architecture that combines high-quality backend processing (Python) with real-time on-device capabilities (Swift/iOS). The goal is to achieve superior RAG (Retrieval-Augmented Generation) quality through genuine vector embeddings and graph-based entity linking, while maintaining offline operation and real-time data ingestion.
+Rebuild of the Personal AI Agent iOS application with a hybrid architecture that combines high-quality backend processing (Python) with on-device RAG capabilities (Swift/iOS). The goal is to achieve superior RAG (Retrieval-Augmented Generation) quality through genuine vector embeddings and graph-based entity linking, while maintaining offline operation.
 
-**Core principle:** Backend Python generates high-quality embeddings and graph structure once (bulk import), then iOS app handles real-time ingestion with on-device embeddings and incremental graph updates.
+**MVP v1.0 (1-day build):** Bulk import from Mac export with on-device embeddings and hybrid RAG. Real-time ingestion deferred to v1.1.
+
+**Core principle:** Backend Python generates high-quality embeddings and graph structure once (bulk import), iOS app performs hybrid RAG (vector + graph) locally with CoreML embeddings.
 
 ---
 
@@ -22,11 +24,12 @@ The current iOS app (`personal-ai-agent-ios`) suffers from poor retrieval qualit
 - Hybrid retrieval with RRF fusion and reranking
 
 **User requirements:**
-- Real-time ingestion for iMessage, Contacts, Calendar
-- Offline-capable (no cloud dependency)
+- **MVP v1.0:** Improved RAG quality via embeddings + graph, bulk import, offline-capable
+- **v1.1+:** Real-time ingestion for iMessage, Contacts, Calendar
 - Low cost (no server fees initially)
 - Secure (data stays on-device)
 - Scalable (can evolve to cloud architecture later)
+- **Target:** MVP functional in 1 day
 
 ---
 
