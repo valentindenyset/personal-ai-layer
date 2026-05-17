@@ -1,0 +1,6 @@
+{
+  "max_length": 128,
+  "padding": "max_length",
+  "truncation": true,
+  "vocab_size": 30522
+}

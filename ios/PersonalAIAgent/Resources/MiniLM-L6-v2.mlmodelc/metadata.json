@@ -1,0 +1,10 @@
+{
+  "model_name": "all-MiniLM-L6-v2",
+  "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "max_sequence_length": 128,
+  "model_type": "sentence-transformers",
+  "architecture": "BERT",
+  "pooling": "mean",
+  "quantization": "fp16"
+}
