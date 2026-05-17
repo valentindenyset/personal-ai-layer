@@ -35,7 +35,7 @@ final class EmbeddingEngineTests: XCTestCase {
     }
 
     private func cosineSimilarity(_ a: [Float], _ b: [Float]) -> Float {
-        let dot = zip(a, b).reduce(0.0) { $0 + $1.0 * $1.1 }
+        let dot = zip(a, b).reduce(0.0) { result, pair in result + pair.0 * pair.1 }
         return dot  // Already normalized, so dot product = cosine similarity
     }
 }
