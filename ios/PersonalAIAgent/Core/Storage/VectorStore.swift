@@ -4,7 +4,7 @@ import SQLite3
 
 struct SearchResult {
     let text: String
-    let score: Float
+    var score: Float
     let source: String
     let dateTs: Double
 }
